@@ -1,0 +1,21 @@
+{
+  "name": "package-installer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive ./test",
+    "cover": "nyc --reporter=text npm test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "chai": "^4.2.0",
+    "eslint": "^5.15.3",
+    "mocha": "^6.0.2",
+    "nyc": "^13.3.0"
+  }
+}
