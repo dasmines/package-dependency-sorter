@@ -11,8 +11,8 @@ describe('sorter', () => {
 	describe('when determining the order to install packages', () => {
 		describe('given packages that have dependencies', () => {
 			it('puts the dependencies before the dependent packages', () => {
-				const packages = [`${KittenService}: ${CamelCaser}`, `${CamelCaser}: `];
-				const expected = `${CamelCaser}, ${KittenService}`;
+				const packages = [`${KittenService}: `, `${Leetmeme}: ${Cyberportal}`, `${Cyberportal}: ${Ice}`, `${CamelCaser}: ${KittenService}`, `${Fraudstream}: ${Leetmeme}`, `${Ice}: `];
+				const expected = `${KittenService}, ${Ice}, ${Cyberportal}, ${Leetmeme}, ${CamelCaser}, ${Fraudstream}`;
 				const sorted = sorter.sort(packages);
 				expect(sorted).to.equal(expected);
 			});
@@ -22,7 +22,11 @@ describe('sorter', () => {
 			});
 			it('rejects input as invalid if packages are not given in the appropriate format (package: dependency)', () => {
 				const packages = [`${KittenService}: ${CamelCaser}`, `${CamelCaser}`];
-				expect(() => sorter.sort(packages)).to.throw(`Invalid Input: all packages are not in the correct format (package: dependency)`);
+				expect(() => sorter.sort(packages)).to.throw(`Invalid Input: ${CamelCaser} is not in the correct format (package: dependency)`);
+			});
+			it('rejects input as invalid if a dependency does not exist', () => {
+				const packages = [`${KittenService}: ${Cyberportal}`, `${CamelCaser}: `];
+				expect(() => sorter.sort(packages)).to.throw(`Invalid Input: ${Cyberportal} is not in the list of packages`);
 			});
 		});
 		describe('given only packages without dependencies', () => {
