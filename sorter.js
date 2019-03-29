@@ -19,6 +19,10 @@ function sort(packages) {
 		} else {
 			let currentDependency = dependency;
 			while (currentDependency && !sortedPackages.includes(currentDependency)) {
+				if (dependencies.includes(currentDependency)) {
+					dependencies.unshift(currentDependency);
+					throw Error(`Invalid Input: contains a cycle (${dependencies.reverse().join(' -> ')})`);
+				}
 				dependencies.unshift(currentDependency);
 				currentDependency = packageMap[currentDependency];
 			}
