@@ -7,6 +7,9 @@ function sort(packages) {
 	const packageMap = {};
 
 	packages.forEach((package) => {
+		if (!package.includes(': ')) {
+			throw Error(`Invalid Input: all packages are not in the correct format (package: dependency)`);
+		}
 		const [packageName, dependency] = package.split(': ');
 		packageMap[packageName] = dependency;
 	});

@@ -20,7 +20,10 @@ describe('sorter', () => {
 				const packages = [`${KittenService}: `, `${Leetmeme}: ${Cyberportal}`, `${Cyberportal}: ${Ice}`, `${CamelCaser}: ${KittenService}`, `${Fraudstream}: `, `${Ice}: ${Leetmeme}`];
 				expect(() => sorter.sort(packages)).to.throw(`Invalid Input: contains a cycle (${Leetmeme} -> ${Cyberportal} -> ${Ice} -> ${Leetmeme})`);
 			});
-			it('rejects input as invalid if packages are not given in the appropriate format (package: dependency)', () => { });
+			it('rejects input as invalid if packages are not given in the appropriate format (package: dependency)', () => {
+				const packages = [`${KittenService}: ${CamelCaser}`, `${CamelCaser}`];
+				expect(() => sorter.sort(packages)).to.throw(`Invalid Input: all packages are not in the correct format (package: dependency)`);
+			});
 		});
 		describe('given only packages without dependencies', () => {
 			it('returns the packages in the given order', () => {
