@@ -6,7 +6,12 @@ describe('sorter', () => {
 	const CamelCaser = "CamelCaser";
 	describe('when determining the order to install packages', () => {
 		describe('given packages that have dependencies', () => {
-			it('puts the dependencies before the dependent packages', () => { });
+			it('puts the dependencies before the dependent packages', () => {
+				const packages = [`${KittenService}: ${CamelCaser}`, `${CamelCaser}: `];
+				const expected = `${CamelCaser}, ${KittenService}`;
+				const sorted = sorter.sort(packages);
+				expect(sorted).to.equal(expected);
+			});
 			it('rejects input as invalid if there are dependency cycles', () => { });
 			it('rejects input as invalid if packages are not given in the appropriate format (package: dependency)', () => { });
 		});
@@ -15,7 +20,7 @@ describe('sorter', () => {
 				const packages = [`${KittenService}: `, `${CamelCaser}: `];
 				const expected = `${KittenService}, ${CamelCaser}`;
 				const sorted = sorter.sort(packages);
-				expect(sorted).to.deep.equal(expected);
+				expect(sorted).to.equal(expected);
 			});
 		});
 	});
