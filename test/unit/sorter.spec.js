@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
+const sorter = require('../../sorter');
 
 describe('sorter', () => {
-	let sorter = require('../../sorter.js');
 	const KittenService = 'KittenService';
 	const CamelCaser = 'CamelCaser';
 	const Leetmeme = 'Leetmeme';

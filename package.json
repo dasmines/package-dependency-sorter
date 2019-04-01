@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive ./test",
+    "test": "mocha --recursive test",
     "cover": "nyc --reporter=text npm test",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },

@@ -28,11 +28,11 @@ function sort(packages) {
 
 function parsePackages(packages) {
 	const packageMap = {};
-	packages.forEach((package) => {
-		if (!package.includes(': ')) {
-			throw new Error(`Invalid Input: ${package} is not in the correct format (package: dependency)`);
+	packages.forEach((pkg) => {
+		if (!pkg.includes(': ')) {
+			throw new Error(`Invalid Input: ${pkg} is not in the correct format (package: dependency)`);
 		}
-		const [packageName, dependency] = package.split(': ');
+		const [packageName, dependency] = pkg.split(': ');
 		packageMap[packageName] = dependency;
 	});
 	return packageMap;
