@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --recursive test",
     "cover": "nyc --reporter=text npm test",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "npm run cover && nyc report --reporter=text-lcov | coveralls"
   },
   "keywords": [],
   "author": "",
